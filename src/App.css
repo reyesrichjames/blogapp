@@ -1,0 +1,14 @@
+.post-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.navbar {
+  margin-bottom: 0 !important; /* Remove bottom margin from navbar */
+}
+
+.container {
+  padding-top: 0 !important; /* Remove top padding from container */
+}
