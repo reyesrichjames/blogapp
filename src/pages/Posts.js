@@ -4,7 +4,6 @@ import { Container, Row, Col, Card, Button, Spinner, Form, Alert, Modal } from '
 import UserContext from '../UserContext';
 import placeholderImage from '../images/placeholder.jpg'; // Add your placeholder image path
 import userPlaceholderImage from '../images/user-placeholder.jpg'; // Add your user placeholder image path
-import PreviewBlogPosts from '../components/PreviewBlogPosts'; // Import the new component
 
 export default function Posts() {
   const { user } = useContext(UserContext);
@@ -239,16 +238,22 @@ export default function Posts() {
                     <img 
                       src={post.imageUrl || placeholderImage} 
                       alt={post.title} 
-                      style={{ width: '100%', borderRadius: '0.5rem' }} // Smaller image
+                      style={{ 
+                        width: '100%', 
+                        height: '100px', // Set fixed height for the image
+                        objectFit: 'cover', // Ensure the image covers the area
+                        borderRadius: '0',
+                        marginTop: '10px' // Remove border radius
+                      }} 
                     />
                   </Col>
                   <Col xs={8}>
-                    <h5>
+                    <h5 style={{ marginTop: '10px' }}> {/* Align title with image */}
                       <Link to={`/posts/${post._id}`} style={{ color: '#0d6efd', textDecoration: 'underline' }}>
                         {post.title}
                       </Link>
                     </h5>
-                    <p className="text-muted">{new Date(post.createdAt).toLocaleDateString('en-US', {
+                    <p className="text-muted mb-0">{new Date(post.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
