@@ -13,7 +13,7 @@ export default function AdminDashboard() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
-  const [formData, setFormData] = useState({ title: '', content: '' });
+  const [formData, setFormData] = useState({ title: '', content: '', imageUrl: '' });
 
   useEffect(() => {
     // Check if user state is loaded
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
       if (response.ok) {
         setPosts([...posts, data]);
         setShowAddForm(false);
-        setFormData({ title: '', content: '' });
+        setFormData({ title: '', content: '', imageUrl: '' });
       } else {
         setError(data.message || 'Failed to add post');
       }
@@ -109,7 +109,11 @@ export default function AdminDashboard() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          title: formData.title,
+          content: formData.content,
+          imageUrl: formData.imageUrl
+        })
       });
 
       const data = await response.json();
@@ -153,7 +157,7 @@ export default function AdminDashboard() {
 
   const openEditForm = (post) => {
     setCurrentPost(post);
-    setFormData({ title: post.title, content: post.content });
+    setFormData({ title: post.title, content: post.content, imageUrl: post.imageUrl });
     setShowEditForm(true);
     setShowAddForm(false);
   };
@@ -207,6 +211,18 @@ export default function AdminDashboard() {
                   required
                 ></textarea>
               </div>
+              <div className="mb-3">
+                <label htmlFor="imageUrl" className="form-label">Image URL</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  id="imageUrl"
+                  name="imageUrl"
+                  value={formData.imageUrl}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
               <button type="submit" className="btn btn-primary">Add Post</button>
             </form>
           </div>
@@ -216,7 +232,7 @@ export default function AdminDashboard() {
       {showEditForm && (
         <div className="card mb-4">
           <div className="card-header">
-            <h3>Edit Post</h3>
+            <h3>Update Post</h3>
           </div>
           <div className="card-body">
             <form onSubmit={handleEditPost}>
@@ -242,6 +258,18 @@ export default function AdminDashboard() {
                   onChange={handleInputChange}
                   required
                 ></textarea>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="imageUrl" className="form-label">Image URL</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  id="imageUrl"
+                  name="imageUrl"
+                  value={formData.imageUrl}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <button type="submit" className="btn btn-primary">Update Post</button>
             </form>
