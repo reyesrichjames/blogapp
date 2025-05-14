@@ -141,7 +141,7 @@ export default function PostView() {
               <img 
                 src={post.imageUrl} 
                 alt={post.title} 
-                style={{ width: '100%', borderRadius: '0.5rem' }} 
+                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }} 
               />
             </div>
             <Card.Body>
