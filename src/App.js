@@ -15,6 +15,7 @@ import Posts from './pages/Posts';
 import PostView from './pages/PostView';
 import NavBar from './components/NavBar';
 import AdminDashboard from './pages/AdminDashboard';
+import Profile from './pages/Profile';
 
 function App() {
   const [user, setUser] = useState({
@@ -71,6 +72,7 @@ function App() {
             <Route path="/posts" element={<Posts />} />
             <Route path="/posts/:postId" element={<PostView />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </Container>
       </Router>

@@ -146,7 +146,14 @@ export default function PostView() {
             </div>
             <Card.Body>
               <h2 className="mb-0">{post.title}</h2>
-              <span className="text-muted">By {post.author?.username || 'Unknown'}</span>
+              <span className="text-muted">
+                <img 
+                  src={post.author?.profilePic || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'}
+                  alt="Profile" 
+                  style={{ width: '20px', marginRight: '5px', borderRadius: '50%' }} 
+                />
+                By {post.author?.username || 'Unknown'}
+              </span>
               <p className="text-muted">
                 {new Date(post.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',

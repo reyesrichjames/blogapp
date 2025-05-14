@@ -292,7 +292,11 @@ export default function Posts() {
                           <Card.Body>
                             <Card.Title>{post.title}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
-                              <img src={userPlaceholderImage} alt="Profile" style={{ width: '20px', marginRight: '5px' }} />
+                              <img 
+                                src={post.author?.profilePic || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'}
+                                alt="Profile" 
+                                style={{ width: '20px', marginRight: '5px', borderRadius: '50%' }} 
+                              />
                               By {post.author?.username || 'Unknown'}
                             </Card.Subtitle>
                             <Card.Text className="text-secondary">

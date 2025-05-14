@@ -32,6 +32,9 @@ export default function NavBar() {
             {user.isAdmin && (
               <Nav.Link as={Link} to="/admin">Admin Dashboard</Nav.Link>
             )}
+            {user.id && (
+              <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+            )}
           </Nav>
           <Nav>
             {user.id ? (
