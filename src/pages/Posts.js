@@ -218,16 +218,7 @@ export default function Posts() {
       </div>
       <Container className="mt-5">
         <Row>
-          <Col md={4}> {/* Search input on the left side */}
-            <Form className="mb-4 pt-3">
-              <Form.Control
-                type="text"
-                placeholder="Search posts..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </Form>
-            {/* Popular Posts Section */}
+          <Col md={4}> {/* Popular Posts Section */}
             <h3>Popular Posts</h3>
             {popularPosts.length === 0 ? (
               <p>No popular posts found.</p>
@@ -264,7 +255,26 @@ export default function Posts() {
               ))
             )}
           </Col>
+          <Col md={4} className="d-md-none"> {/* Search input on mobile only */}
+            <Form className="mb-4 pt-3">
+              <Form.Control
+                type="text"
+                placeholder="Search posts..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Form>
+          </Col>
           <Col md={8}> {/* Blog posts on the right side */}
+            {/* Search input on larger screens */}
+            <Form className="mb-4 pt-3 d-none d-md-block">
+              <Form.Control
+                type="text"
+                placeholder="Search posts..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Form>
             {filteredPosts.length === 0 ? (
               <div className="text-center my-5">
                 <h3>No posts found</h3>
